@@ -318,7 +318,10 @@ export default function CaseStudy() {
           {zeusCase.video ? (
             <VideoPlayer src={zeusCase.video} poster={zeusCase.poster} className="vplayer--case" />
           ) : (
-            <div className="case__placeholder" style={{ '--ph': `url(${zeusCase.poster})` }}>
+            <div
+              className="case__placeholder"
+              style={{ '--ph': `url("${new URL(zeusCase.poster, document.baseURI).href}")` }}
+            >
               <div className="case__ph-frame">
                 <span className="case__ph-badge">
                   <span className="case__ph-dot" />

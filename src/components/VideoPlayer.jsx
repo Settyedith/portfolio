@@ -131,7 +131,11 @@ export default function VideoPlayer({ src, poster, className = '', autoPlay = tr
     <div
       className={`vplayer ${portrait ? 'vplayer--portrait' : ''} ${className}`}
       ref={wrapRef}
-      style={portrait ? { '--vp-poster': `url(${poster})` } : undefined}
+      style={
+        portrait && poster
+          ? { '--vp-poster': `url("${new URL(poster, document.baseURI).href}")` }
+          : undefined
+      }
     >
       <video
         ref={videoRef}
